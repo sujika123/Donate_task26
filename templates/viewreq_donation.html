@@ -1,0 +1,58 @@
+{% extends 'userhome.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card" style="color:black;">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <br>
+                <h2 class="text-center">
+                    DONATION
+                </h2>
+
+            <div class="body table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>SL.NO</th>
+                        <th>MEDICINE</th>
+                        <th>MEDICINE AMOUNT</th>
+                        <th>CASH</th>
+                        <th>DESCRIPTION</th>
+                        <th>STATUS</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%  for i in data %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{i.medicine}}</td>
+                        <td>{{i.medicine_amount}}</td>
+                        <td>{{i.cash}}</td>
+                        <td>{{i.description}}</td>
+                        <td>
+                          {% if i.status == 0 %}
+                          <p style="color:green;">Pending</p>
+                          {% elif i.status == 1 %}
+                          <p style="color:blue">Approved</p>
+                          {% else %}
+                          <p style="color:red;">Rejected</p>
+                          {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

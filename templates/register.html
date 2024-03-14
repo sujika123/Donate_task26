@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'login/css/bootstrap.min.css' %}" />
+</head>
+<body>
+<div style="margin-top:100px;margin-left:600px;">
+
+<h1>Registeration</h1>
+<div style="color:red;">
+
+Register as a User : <a href="{% url 'user_registration' %}"><button class="btn btn-primary">SIGN UP</button></a><br><br>
+Register as a Donator : <a href="{% url 'donmngmt_registration' %}"><button class="btn btn-primary">SIGN UP</button></a><br><br>
+Register as a Recipient : <a href="{% url 'recipient_registration' %}"><button class="btn btn-primary">SIGN UP</button></a><br><br>
+Register as a Branch Management : <a href="{% url 'branch_registration' %}"><button class="btn btn-primary">SIGN UP</button></a><br><br>
+
+</div>
+</div>
+</body>
+</html>

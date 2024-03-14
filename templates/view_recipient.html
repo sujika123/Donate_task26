@@ -1,0 +1,59 @@
+{% extends 'adminhome.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card" style="color:black;">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <br>
+                <h2 class="text-center">
+                    RECIPIENT APPROVAL REQUESTS
+                </h2>
+
+
+            <div class="body table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>SL.NO</th>
+                        <th>NAME</th>
+                        <th>ADDRESS</th>
+                        <th>PHONE</th>
+                        <th>ACTION</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%  for i in data %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{i.name}}</td>
+                        <td>{{i.address}}</td>
+                        <td>{{i.phone}}</td>
+                         <td>
+                {% if i.status == 0 %}
+                <a href="{% url 'approve_recipient' i.user_id %}" type="button" class="btn btn-primary">Approve</a>
+                <form action="{% url 'reject_recipient' i.user_id %}" method="post" style="display:inline;" onsubmit="window.mytest()">
+                  {% csrf_token %}
+                  <input type="hidden" value="{{i.id}}" />
+                  <button class="btn btn-danger">Reject</button>
+                </form>
+                {% elif i.status == 1 %}
+                <button type="button" class="btn btn-success">Approval Confirmed</button>
+                {% else %}
+                <button type="button" class="btn btn-danger">Approval rejected</button>
+                {% endif %}
+              </td>
+
+                    </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
